@@ -13,7 +13,7 @@
  * copyright:	2011 Simple Machines (http://www.simplemachines.org)
  * license:		BSD, See included LICENSE.TXT for terms and conditions.
  *
- * @version 1.0
+ * @version 1.0.1
  *
  */
 
@@ -524,7 +524,7 @@ class Packages_Controller extends Action_Controller
 			elseif ($action['type'] == 'credits')
 			{
 				$thisAction = array(
-					'type' => $txt['execute_credits_add'],
+					'type' => $action['reverse'] ? $txt['execute_credits_remove'] : $txt['execute_credits_add'],
 					'action' => sprintf($txt['execute_credits_action'], Util::htmlspecialchars($action['title'])),
 				);
 			}

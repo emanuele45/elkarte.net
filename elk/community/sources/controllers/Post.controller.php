@@ -15,7 +15,7 @@
  * copyright:	2011 Simple Machines (http://www.simplemachines.org)
  * license:		BSD, See included LICENSE.TXT for terms and conditions.
  *
- * @version 1.0
+ * @version 1.0.1
  *
  */
 
@@ -896,8 +896,25 @@ class Post_Controller extends Action_Controller
 		{
 			$context['icons'][count($context['icons']) - 1]['is_last'] = true;
 			$context['icons'][0]['selected'] = true;
-			$context['icon'] = $context['icons'][0]['value'];
-			$context['icon_url'] = $context['icons'][0]['url'];
+			// $context['icon'] is set when editing a message
+			if (!isset($context['icon']))
+				$context['icon'] = $context['icons'][0]['value'];
+			$found = false;
+			foreach ($context['icons'] as $icon)
+			{
+				if ($icon['value'] === $context['icon'])
+				{
+					$found = true;
+					$context['icon_url'] = $icon['url'];
+					break;
+				}
+			}
+			// Failsafe
+			if (!$found)
+			{
+				$context['icon'] = $context['icons'][0]['value'];
+				$context['icon_url'] = $context['icons'][0]['url'];
+			}
 		}
 
 		// Are we starting a poll? if set the poll icon as selected if its available
