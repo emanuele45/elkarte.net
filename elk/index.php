@@ -2,31 +2,31 @@
 $ssi_layers = array('html', 'body');
 $site_url = 'http://www.elkarte.net';
 
-require_once('community/SSI.php');
-
 $txt['what_elk'] = 'What is ElkArte?';
-$txt['what_elk_answer'] = 'ElkArte is a powerful community software, which is based on the well known Simple Machines Forum.
+$txt['what_elk_answer'] = 'ElkArte is a powerful community building software, which is based on the well known Simple Machines Forum.
 <br /><br /> Many of our contributors are former SMF team members with several years of experience in developing forum software.';
 $txt['elk_features'] = 'ElkArte Features:';
 $txt['elk_features_answer'] = 'ElkArte is designed to provide you with all the features you need for a full featured community website. Some of our highlights:
 <ul class="features">
-	<li>Post by Email</li>
-	<li>mentioning users inluding notifications</li>
+	<li>Posting by Email</li>
+	<li>Mentioning users including notifications</li>
 	<li>Likes</li>
 	<li>Drafts</li>
 	<li>OpenID 2.0</li>
+	<li>Drag and drop options in the admin interface</li>
+	<li>Improved Anti Spam measures</li>
 </ul>
 <p>and all that cool stuff you may already know from the common social networking platforms. Test ElkArte yourself on the <a href="' . $site_url . '/community/">community forum.</a></p>';
 $txt['elk_why'] = 'Why ElkArte?';
-$txt['elk_why_answer'] = 'ElkArte is a completely free software, licensed as open source under BSD-3clause.
+$txt['elk_why_answer'] = 'ElkArte is a completely free software, licensed as open source under BSD-3 clause.
 <br><br>Enjoy the benefits of Volunteers from around the world who spend time making ElkArte what it is today.';
 $txt['elk_contrib'] = 'ElkArte Contributors';
-$txt['elk_contrib_answer1'] = 'This is a list of the awesome people who have contributed to ElkArte on Github.';
+$txt['elk_contrib_answer1'] = 'This is a list of the awesome people who have contributed to <a href="https://github.com/elkarte/Elkarte/">ElkArte on <i class="fa fa-github fa-fw"></i>Github.</a>';
 $txt['elk_contrib_answer2'] = 'Many other people have also contributed by submitting patches, constructive discussions and support.';
 $txt['elk_contrib_answer3'] = 'Thanks to each and everyone of you!';
 
 $txt['elk_translators'] = 'ElkArte Language Translators';
-$txt['elk_translators_answer1'] = 'This is a list of the awesome people who have contributed to ElkArte on Github.';
+$txt['elk_translators_answer1'] = 'This is a list of all the awesome <a href="https://www.transifex.com/organization/elkarte/dashboard"><i class="fa fa-language"></i> Language Translators</a> who make it possible for people around the world to use ElkArte.';
 
 $txt['download_btn'] = 'Download ElkArte';
 $txt['fork_btn'] = 'Fork ElkArte';
@@ -34,7 +34,7 @@ $txt['site_development'] = 'Development';
 $txt['site_support'] = 'Support';
 $txt['site_join'] = 'Join our support community.';
 $txt['site_documentation'] = 'Wiki Documentation';
-$txt['site_give_back'] = 'Give back and contribute on github.';
+$txt['site_give_back'] = 'Give back and contribute on GitHub.';
 $txt['report_bugs'] = 'Report and resolve bugs';
 $txt['recent_commits'] = 'Recent commits';
 
@@ -74,6 +74,8 @@ $context['html_headers'] .= '
 			});
 		</script>';
 
+require_once('community/SSI.php');
+
 ?>
 		<div id="main">
 			<div class="box software">
@@ -102,19 +104,17 @@ $context['html_headers'] .= '
 				<div id="trans">
 					<h3><?php echo $txt['elk_translators']; ?></h3>
 					<p><?php echo $txt['elk_translators_answer1']; ?></p>
-					<p id="translators"><?php require_once("./tx_contrib.php"); ?></p>
+					<p id="translators"><?php echo require_once("./tx_contrib2.php"); ?></p>
 				</div>
 			</div>
 			<div class="extended">
 			<div class="buttons">
-				<span class="button_submit btn">
-					<i class="fa fa-download fa-fw"></i>
-					<a class="button_submit btn" href="https://github.com/elkarte/Elkarte/releases/download/v1.0.0/ElkArte_v1_0_0_install.zip"><?php echo $txt['download_btn']; ?></a>
-				</span>
-				<span class="button_submit btn">
-					<i class="fa fa-github fa-fw"></i>
-					<a href="https://github.com/elkarte/Elkarte/fork"><?php echo $txt['fork_btn']; ?></a>
-				</span>
+					<a class="button_submit btn" href="https://github.com/elkarte/Elkarte/releases/download/v1.0.0/ElkArte_v1_0_0_install.zip">
+						<i class="fa fa-download fa-15x"></i> <?php echo $txt['download_btn']; ?>
+					</a>
+					<a class="button_submit btn" href="https://github.com/elkarte/Elkarte/fork">
+						<i class="fa fa-github fa-15x"></i> <?php echo $txt['fork_btn']; ?>
+					</a>
 			</div>
 			<ul id="ext">
 				<li class="column">
