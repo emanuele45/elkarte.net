@@ -1107,6 +1107,14 @@ a.bbc_link {
 	border: none;
 	white-space: nowrap;
 }
+.linktree:last-child {
+	max-width: 25em;
+}
+.linktree a {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 .linktree:last-child>span>a {
 	display: inline;
 }
