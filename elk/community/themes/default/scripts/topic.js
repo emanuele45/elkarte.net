@@ -856,20 +856,36 @@ function expandThumb(thumbID)
 	var img = document.getElementById('thumb_' + thumbID),
 		link = document.getElementById('link_' + thumbID);
 
-	// Save the currently displayed image attributes
-	var tmp_src = img.src,
-		tmp_height = img.style.height,
-		tmp_width = img.style.width;
+	// The lightbox container exists, set the html to be our full size image
+	if ($('#elk_lightbox').length > 0)
+	{
+		$('#elk_lb_content').html('<img id="elk_lb_img" src="' + link.href + '" />');
 
-	// Set the displayed image attributes to the link attributes, this will expand in place
-	img.src = link.href;
-	img.style.width = link.style.width;
-	img.style.height = link.style.height;
+		// Show the lightbox window
+		$('#elk_lightbox').show();
+	}
+	// The lightbox container doesn't exist so create it and load our image
+	else
+	{
+		// Create the image container, append it to the body
+		var lightbox = '<div id="elk_lightbox"><div id="elk_lb_content"><img id="elk_lb_img" src="' + link.href +'" /></div></div>';
 
-	// Now place the image attributes back
-	link.href = tmp_src;
-	link.style.width = tmp_width;
-	link.style.height = tmp_height;
+		$('body').append(lightbox);
+	}
+
+	// Click anywhere on the page to get close the lightbox window
+	$('#elk_lightbox').on('click', function() {
+		$('#elk_lightbox').hide();
+		$(window).off('resize.expandThumb');
+	});
+
+	// Reset the image max height as the browser window changes
+	$(window).on('resize.expandThumb', function() {
+		$('#elk_lb_img').css({'max-height':$(window).height() - 40});
+	});
+
+	// Make sure the image fits on the screen
+	$('#elk_lb_img').css({'max-height':$(window).height() - 40});
 
 	return false;
 }
